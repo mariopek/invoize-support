@@ -32,10 +32,63 @@
             line-height: 1.6;
         }
 
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9;
+            color: var(--white) !important;
+        }
+
         /* Header */
         header {
             background: var(--gradient);
-            padding: 80px 20px 120px;
+            padding: 140px 20px 120px;
             text-align: center;
             position: relative;
         }
@@ -261,6 +314,18 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            header {
+                padding-top: 100px;
+            }
+
             header h1 {
                 font-size: 1.8rem;
             }
@@ -276,6 +341,16 @@
     </style>
 </head>
 <body>
+    <nav>
+        <a href="index.html" class="nav-logo">Invoize</a>
+        <div class="nav-links">
+            <a href="index.html#features">Features</a>
+            <a href="index.html#testimonials">Reviews</a>
+            <a href="support.html">Support</a>
+            <a href="https://apps.apple.com" class="nav-cta">Download</a>
+        </div>
+    </nav>
+
     <header>
         <div class="logo">Invoize <span>for Mac</span></div>
         <h1>Support Center</h1>
