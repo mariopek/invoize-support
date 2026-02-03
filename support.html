@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoize - Podrška</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f1f5f9;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: var(--gradient);
+            padding: 80px 20px 120px;
+            text-align: center;
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: var(--white);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            opacity: 0.9;
+        }
+
+        header h1 {
+            color: var(--white);
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .faq-item {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .faq-item:hover {
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-question::before {
+            content: '?';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .faq-answer {
+            color: var(--gray);
+            padding-left: 38px;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--light-gray);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .contact-section p {
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 30px;
+            width: 250px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .contact-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* System Requirements */
+        .requirements {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .requirement-item {
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .requirement-item h4 {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .requirement-item p {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        footer .logo {
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            .contact-section {
+                padding: 30px 20px;
+            }
+
+            .contact-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Invoize <span>for Mac</span></div>
+        <h1>Centar za podršku</h1>
+        <p>Pronađite odgovore na svoja pitanja ili nas kontaktirajte direktno</p>
+    </header>
+
+    <main>
+        <section class="faq-section">
+            <h2 class="section-title">Često postavljana pitanja</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">Kako mogu kreirati prvi račun?</div>
+                <div class="faq-answer">Nakon instalacije aplikacije, kliknite na "Novi račun" i popunite potrebne podatke. Invoize će automatski generirati profesionalni račun koji možete spremiti kao PDF ili poslati direktno e-mailom.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Mogu li prilagoditi izgled računa?</div>
+                <div class="faq-answer">Da! Invoize nudi različite predloške i opcije prilagodbe. Možete dodati svoj logo, promijeniti boje i fontove te urediti raspored elemenata prema vlastitim željama.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Kako se podaci sinkroniziraju s iCloudom?</div>
+                <div class="faq-answer">Invoize automatski sprema sve vaše podatke na iCloud. Vaši računi, klijenti i postavke bit će dostupni na svim vašim Apple uređajima prijavljenima s istim Apple ID-om.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Podržava li aplikacija više valuta?</div>
+                <div class="faq-answer">Da, Invoize podržava sve glavne svjetske valute. Možete postaviti zadanu valutu u postavkama ili je promijeniti za svaki račun pojedinačno.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">Kako mogu izvesti podatke?</div>
+                <div class="faq-answer">Podatke možete izvesti u različitim formatima uključujući PDF, CSV i Excel. Idite na Datoteka > Izvoz i odaberite željeni format i raspon datuma.</div>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Trebate dodatnu pomoć?</h2>
+            <p>Naš tim za podršku je tu da vam pomogne</p>
+
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email podrška</h3>
+                    <a href="mailto:support@invoize.app">support@invoize.app</a>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">Odgovaramo unutar 24 sata</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>Društvene mreže</h3>
+                    <a href="https://twitter.com/invoizeapp">@invoizeapp</a>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">Pratite nas za novosti</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="requirements">
+            <h2 class="section-title">Sistemski zahtjevi</h2>
+            <div class="requirements-grid">
+                <div class="requirement-item">
+                    <h4>Operativni sustav</h4>
+                    <p>macOS 13.0 ili noviji</p>
+                </div>
+                <div class="requirement-item">
+                    <h4>Procesor</h4>
+                    <p>Apple Silicon ili Intel</p>
+                </div>
+                <div class="requirement-item">
+                    <h4>Memorija</h4>
+                    <p>4 GB RAM minimum</p>
+                </div>
+                <div class="requirement-item">
+                    <h4>Prostor</h4>
+                    <p>50 MB slobodnog prostora</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="logo">Invoize</div>
+        <p>&copy; 2025 Invoize. Sva prava pridržana.</p>
+        <p style="margin-top: 10px;"><a href="index.html">Početna</a> · <a href="privacy.html">Privatnost</a></p>
+    </footer>
+</body>
+</html>

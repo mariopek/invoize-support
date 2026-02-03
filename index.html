@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoize - Profesionalno fakturiranje za Mac</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #0ea5e9;
+            --accent: #10b981;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light-gray: #f1f5f9;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #0ea5e9 100%);
+            --gradient-accent: linear-gradient(135deg, #10b981 0%, #0ea5e9 100%);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-cta {
+            background: var(--gradient);
+            color: var(--white) !important;
+            padding: 10px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9;
+            color: var(--white) !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: linear-gradient(180deg, var(--light-gray) 0%, var(--white) 100%);
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="%236366f1" opacity="0.1"/></svg>');
+            background-size: 50px;
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 900px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--gray);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 30px;
+        }
+
+        .hero-badge span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--white);
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--dark);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .app-store-badge {
+            height: 50px;
+        }
+
+        .hero-image {
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            background: var(--gradient);
+            border-radius: 20px;
+            margin: 0 auto;
+            box-shadow: 0 40px 80px rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--light-gray);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: var(--dark);
+            padding: 120px 20px;
+            color: var(--white);
+        }
+
+        .benefits .section-header h2 {
+            color: var(--white);
+        }
+
+        .benefits .section-header p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            text-align: center;
+        }
+
+        .benefit-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .benefit-item h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .benefit-item p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 120px 20px;
+            background: var(--light-gray);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .testimonial-avatar {
+            width: 45px;
+            height: 45px;
+            background: var(--gradient);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .testimonial-author-info h5 {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-author-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 20px;
+            text-align: center;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+
+        .cta-content {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .cta .btn-secondary {
+            font-size: 1.1rem;
+            padding: 18px 40px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 60px 20px 30px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .hero-image-placeholder {
+                height: 300px;
+            }
+
+            .cta h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="nav-logo">Invoize</a>
+        <div class="nav-links">
+            <a href="#features">Značajke</a>
+            <a href="#testimonials">Recenzije</a>
+            <a href="support.html">Podrška</a>
+            <a href="https://apps.apple.com" class="nav-cta">Preuzmi</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">
+                🍎 <span>Napravljeno za macOS</span>
+            </div>
+            <h1>Profesionalno fakturiranje. Jednostavno.</h1>
+            <p>Kreirajte predivne račune u nekoliko klikova. Invoize je najelegantniji način za upravljanje fakturiranjem na vašem Macu.</p>
+            <div class="hero-buttons">
+                <a href="https://apps.apple.com" class="btn btn-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    Preuzmi na App Store
+                </a>
+                <a href="#features" class="btn btn-secondary">Saznaj više</a>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-placeholder">
+                    📊 Invoize Screenshot
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="section-header">
+            <h2>Sve što vam treba</h2>
+            <p>Moćne značajke dizajnirane da pojednostave vaše poslovanje</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📄</div>
+                <h3>Profesionalni predlošci</h3>
+                <p>Odaberite između raznih elegantnih predložaka ili kreirajte vlastiti dizajn koji odražava vaš brand.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">☁️</div>
+                <h3>iCloud sinkronizacija</h3>
+                <p>Vaši podaci su sigurno pohranjeni i automatski sinkronizirani na svim vašim Apple uređajima.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Brzo kreiranje</h3>
+                <p>Kreirajte račun u nekoliko sekundi. Intuitivno sučelje osmišljeno za maksimalnu produktivnost.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3>Praćenje plaćanja</h3>
+                <p>Pratite koji računi su plaćeni, a koji još čekaju. Nikad ne propustite plaćanje.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Izvještaji i analitika</h3>
+                <p>Dobijte uvid u svoje poslovanje s detaljnim izvještajima i grafičkim prikazima.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Privatnost i sigurnost</h3>
+                <p>Vaši podaci ostaju vaši. Bez trackinga, bez oglasa, bez kompromisa.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="section-header">
+            <h2>Zašto Invoize?</h2>
+            <p>Brojke govore same za sebe</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-number">30s</div>
+                <h4>Za kreirati račun</h4>
+                <p>Prosječno vrijeme za kreiranje novog računa</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-number">100%</div>
+                <h4>Privatnost</h4>
+                <p>Vaši podaci nikad ne napuštaju vaše uređaje</p>
+            </div>
+            <div class="benefit-item">
+                <div class="benefit-number">∞</div>
+                <h4>Neograničeno</h4>
+                <p>Bez limita na broj računa i klijenata</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="section-header">
+            <h2>Što korisnici kažu</h2>
+            <p>Pridružite se tisućama zadovoljnih korisnika</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Konačno aplikacija za fakturiranje koja izgleda kao da pripada na Mac! Jednostavna, elegantna i moćna."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">MK</div>
+                    <div class="testimonial-author-info">
+                        <h5>Marko K.</h5>
+                        <p>Freelancer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"Prebacio sam se s komplicirane enterprise aplikacije i nikad se nisam osvrnuo. Invoize ima sve što mi treba."</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">AP</div>
+                    <div class="testimonial-author-info">
+                        <h5>Ana P.</h5>
+                        <p>Vlasnica malog poduzeća</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">"iCloud sinkronizacija je fantastična. Mogu početi račun na Macu i završiti ga na iPadu. Savršeno!"</p>
+                <div class="testimonial-author">
+                    <div class="testimonial-avatar">IH</div>
+                    <div class="testimonial-author-info">
+                        <h5>Ivan H.</h5>
+                        <p>Konzultant</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Spremni za početak?</h2>
+            <p>Preuzmite Invoize besplatno i transformirajte način na koji fakturirate.</p>
+            <a href="https://apps.apple.com" class="btn btn-secondary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                Preuzmi na App Store
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Invoize</h3>
+                <p>Profesionalno fakturiranje za Mac. Jednostavno, elegantno i sigurno.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Proizvod</h4>
+                <ul>
+                    <li><a href="#features">Značajke</a></li>
+                    <li><a href="#testimonials">Recenzije</a></li>
+                    <li><a href="https://apps.apple.com">App Store</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Podrška</h4>
+                <ul>
+                    <li><a href="support.html">Centar za pomoć</a></li>
+                    <li><a href="mailto:support@invoize.app">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Pravno</h4>
+                <ul>
+                    <li><a href="privacy.html">Privatnost</a></li>
+                    <li><a href="terms.html">Uvjeti korištenja</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Invoize. Sva prava pridržana. Napravljeno s ❤️ za macOS.</p>
+        </div>
+    </footer>
+</body>
+</html>
