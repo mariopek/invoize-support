@@ -86,27 +86,78 @@
             color: var(--white) !important;
         }
 
-        .lang-switcher {
+        /* Language Dropdown */
+        .lang-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-toggle {
             display: flex;
             align-items: center;
             gap: 5px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
             font-size: 0.9rem;
             font-weight: 500;
-        }
-
-        .lang-switcher a {
-            padding: 5px 10px;
-            border-radius: 6px;
+            color: var(--gray);
+            background: var(--light-gray);
+            border: none;
             transition: all 0.2s;
         }
 
-        .lang-switcher a.active {
+        .lang-toggle:hover {
+            color: var(--primary);
+        }
+
+        .lang-toggle-arrow {
+            font-size: 0.6rem;
+            transition: transform 0.2s;
+        }
+
+        .lang-dropdown.open .lang-toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .lang-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            padding: 6px;
+            display: none;
+            min-width: 140px;
+            z-index: 1001;
+        }
+
+        .lang-dropdown.open .lang-dropdown-menu {
+            display: block;
+        }
+
+        .lang-dropdown-menu a {
+            display: block;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray) !important;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+
+        .lang-dropdown-menu a:hover {
             background: var(--light-gray);
             color: var(--primary) !important;
         }
 
-        .lang-switcher span {
-            color: var(--gray);
+        .lang-dropdown-menu a.active {
+            background: var(--light-gray);
+            color: var(--primary) !important;
+            font-weight: 600;
         }
 
         /* Header */
@@ -364,97 +415,106 @@
         }
     </style>
 </head>
-<body>
+<body data-page="support">
     <nav>
         <a href="index.html" class="nav-logo">Invoize</a>
         <div class="nav-links">
-            <a href="index.html#features">Features</a>
-            <a href="index.html#testimonials">Reviews</a>
-            <a href="support.html">Support</a>
-            <div class="lang-switcher">
-                <a href="support.html" class="active">EN</a>
-                <span>|</span>
-                <a href="support-sr.html">SR</a>
+            <a href="index.html#features" data-i18n="nav_features">Features</a>
+            <a href="index.html#testimonials" data-i18n="nav_reviews">Reviews</a>
+            <a href="support.html" data-i18n="nav_support">Support</a>
+            <div class="lang-dropdown">
+                <button class="lang-toggle">
+                    <span class="lang-toggle-code">EN</span>
+                    <span class="lang-toggle-arrow">&#9660;</span>
+                </button>
+                <div class="lang-dropdown-menu">
+                    <a href="#" data-lang="en">English</a>
+                    <a href="#" data-lang="de">Deutsch</a>
+                    <a href="#" data-lang="fr">Fran&ccedil;ais</a>
+                    <a href="#" data-lang="es">Espa&ntilde;ol</a>
+                    <a href="#" data-lang="it">Italiano</a>
+                    <a href="#" data-lang="sr">Srpski</a>
+                </div>
             </div>
-            <a href="https://apps.apple.com" class="nav-cta">Download</a>
+            <a href="https://apps.apple.com" class="nav-cta" data-i18n="nav_download">Download</a>
         </div>
     </nav>
 
     <header>
-        <div class="logo">Invoize <span>for Mac</span></div>
-        <h1>Support Center</h1>
-        <p>Find answers to your questions or contact us directly</p>
+        <div class="logo">Invoize <span data-i18n="support_header_subtitle">for Mac</span></div>
+        <h1 data-i18n="support_header_title">Support Center</h1>
+        <p data-i18n="support_header_desc">Find answers to your questions or contact us directly</p>
     </header>
 
     <main>
         <section class="faq-section">
-            <h2 class="section-title">Frequently Asked Questions</h2>
+            <h2 class="section-title" data-i18n="support_faq_title">Frequently Asked Questions</h2>
 
             <div class="faq-item">
-                <div class="faq-question">How do I create my first invoice?</div>
-                <div class="faq-answer">After installing the app, click on "New Invoice" and fill in the required details. Invoize will automatically generate a professional invoice that you can save as PDF or send directly via email.</div>
+                <div class="faq-question" data-i18n="support_faq1_q">How do I create my first invoice?</div>
+                <div class="faq-answer" data-i18n="support_faq1_a">After installing the app, click on "New Invoice" and fill in the required details. Invoize will automatically generate a professional invoice that you can save as PDF or send directly via email.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Can I customize the invoice design?</div>
-                <div class="faq-answer">Yes! Invoize offers various templates and customization options. You can add your logo, change colors and fonts, and arrange elements according to your preferences.</div>
+                <div class="faq-question" data-i18n="support_faq2_q">Can I customize the invoice design?</div>
+                <div class="faq-answer" data-i18n="support_faq2_a">Yes! Invoize offers various templates and customization options. You can add your logo, change colors and fonts, and arrange elements according to your preferences.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">How does iCloud sync work?</div>
-                <div class="faq-answer">Invoize automatically saves all your data to iCloud. Your invoices, clients, and settings will be available on all your Apple devices signed in with the same Apple ID.</div>
+                <div class="faq-question" data-i18n="support_faq3_q">How does iCloud sync work?</div>
+                <div class="faq-answer" data-i18n="support_faq3_a">Invoize automatically saves all your data to iCloud. Your invoices, clients, and settings will be available on all your Apple devices signed in with the same Apple ID.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">Does the app support multiple currencies?</div>
-                <div class="faq-answer">Yes, Invoize supports all major world currencies. You can set a default currency in settings or change it for each invoice individually.</div>
+                <div class="faq-question" data-i18n="support_faq4_q">Does the app support multiple currencies?</div>
+                <div class="faq-answer" data-i18n="support_faq4_a">Yes, Invoize supports all major world currencies. You can set a default currency in settings or change it for each invoice individually.</div>
             </div>
 
             <div class="faq-item">
-                <div class="faq-question">How can I export my data?</div>
-                <div class="faq-answer">You can export data in various formats including PDF, CSV, and Excel. Go to File > Export and select the desired format and date range.</div>
+                <div class="faq-question" data-i18n="support_faq5_q">How can I export my data?</div>
+                <div class="faq-answer" data-i18n="support_faq5_a">You can export data in various formats including PDF, CSV, and Excel. Go to File > Export and select the desired format and date range.</div>
             </div>
         </section>
 
         <section class="contact-section">
-            <h2>Need More Help?</h2>
-            <p>Our support team is here to assist you</p>
+            <h2 data-i18n="support_contact_title">Need More Help?</h2>
+            <p data-i18n="support_contact_desc">Our support team is here to assist you</p>
 
             <div class="contact-methods">
                 <div class="contact-card">
-                    <div class="contact-icon">📧</div>
-                    <h3>Email Support</h3>
+                    <div class="contact-icon">&#128231;</div>
+                    <h3 data-i18n="support_email_title">Email Support</h3>
                     <a href="mailto:pekmario@gmail.com">pekmario@gmail.com</a>
-                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">We respond within 24 hours</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;" data-i18n="support_email_response">We respond within 24 hours</p>
                 </div>
 
                 <div class="contact-card">
-                    <div class="contact-icon">💬</div>
-                    <h3>Social Media</h3>
+                    <div class="contact-icon">&#128172;</div>
+                    <h3 data-i18n="support_social_title">Social Media</h3>
                     <a href="https://twitter.com/invoizeapp">@invoizeapp</a>
-                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;">Follow us for updates</p>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-top: 10px;" data-i18n="support_social_desc">Follow us for updates</p>
                 </div>
             </div>
         </section>
 
         <section class="requirements">
-            <h2 class="section-title">System Requirements</h2>
+            <h2 class="section-title" data-i18n="support_req_title">System Requirements</h2>
             <div class="requirements-grid">
                 <div class="requirement-item">
-                    <h4>Operating System</h4>
-                    <p>macOS 13.0 or later</p>
+                    <h4 data-i18n="support_req_os">Operating System</h4>
+                    <p data-i18n="support_req_os_val">macOS 13.0 or later</p>
                 </div>
                 <div class="requirement-item">
-                    <h4>Processor</h4>
-                    <p>Apple Silicon or Intel</p>
+                    <h4 data-i18n="support_req_cpu">Processor</h4>
+                    <p data-i18n="support_req_cpu_val">Apple Silicon or Intel</p>
                 </div>
                 <div class="requirement-item">
-                    <h4>Memory</h4>
-                    <p>4 GB RAM minimum</p>
+                    <h4 data-i18n="support_req_mem">Memory</h4>
+                    <p data-i18n="support_req_mem_val">4 GB RAM minimum</p>
                 </div>
                 <div class="requirement-item">
-                    <h4>Storage</h4>
-                    <p>50 MB free space</p>
+                    <h4 data-i18n="support_req_disk">Storage</h4>
+                    <p data-i18n="support_req_disk_val">50 MB free space</p>
                 </div>
             </div>
         </section>
@@ -462,8 +522,11 @@
 
     <footer>
         <div class="logo">Invoize</div>
-        <p>&copy; 2025 Invoize. All rights reserved.</p>
-        <p style="margin-top: 10px;"><a href="index.html">Home</a> · <a href="privacy.html">Privacy</a></p>
+        <p data-i18n="footer_copyright">&copy; 2025 Invoize. All rights reserved.</p>
+        <p style="margin-top: 10px;"><a href="index.html" data-i18n="support_footer_home">Home</a> &middot; <a href="privacy.html" data-i18n="support_footer_privacy">Privacy</a></p>
     </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
 </body>
 </html>

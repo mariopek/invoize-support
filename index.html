@@ -88,27 +88,78 @@
             color: var(--white) !important;
         }
 
-        .lang-switcher {
+        /* Language Dropdown */
+        .lang-dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-toggle {
             display: flex;
             align-items: center;
             gap: 5px;
+            padding: 5px 12px;
+            border-radius: 8px;
+            cursor: pointer;
             font-size: 0.9rem;
             font-weight: 500;
-        }
-
-        .lang-switcher a {
-            padding: 5px 10px;
-            border-radius: 6px;
+            color: var(--gray);
+            background: var(--light-gray);
+            border: none;
             transition: all 0.2s;
         }
 
-        .lang-switcher a.active {
+        .lang-toggle:hover {
+            color: var(--primary);
+        }
+
+        .lang-toggle-arrow {
+            font-size: 0.6rem;
+            transition: transform 0.2s;
+        }
+
+        .lang-dropdown.open .lang-toggle-arrow {
+            transform: rotate(180deg);
+        }
+
+        .lang-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            padding: 6px;
+            display: none;
+            min-width: 140px;
+            z-index: 1001;
+        }
+
+        .lang-dropdown.open .lang-dropdown-menu {
+            display: block;
+        }
+
+        .lang-dropdown-menu a {
+            display: block;
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray) !important;
+            text-decoration: none;
+            transition: all 0.15s;
+        }
+
+        .lang-dropdown-menu a:hover {
             background: var(--light-gray);
             color: var(--primary) !important;
         }
 
-        .lang-switcher span {
-            color: var(--gray);
+        .lang-dropdown-menu a.active {
+            background: var(--light-gray);
+            color: var(--primary) !important;
+            font-weight: 600;
         }
 
         /* Hero Section */
@@ -553,41 +604,50 @@
         }
     </style>
 </head>
-<body>
+<body data-page="index">
     <nav>
         <a href="index.html" class="nav-logo">Invoize</a>
         <div class="nav-links">
-            <a href="#features">Features</a>
-            <a href="#testimonials">Reviews</a>
-            <a href="support.html">Support</a>
-            <div class="lang-switcher">
-                <a href="index.html" class="active">EN</a>
-                <span>|</span>
-                <a href="index-sr.html">SR</a>
+            <a href="#features" data-i18n="nav_features">Features</a>
+            <a href="#testimonials" data-i18n="nav_reviews">Reviews</a>
+            <a href="support.html" data-i18n="nav_support">Support</a>
+            <div class="lang-dropdown">
+                <button class="lang-toggle">
+                    <span class="lang-toggle-code">EN</span>
+                    <span class="lang-toggle-arrow">&#9660;</span>
+                </button>
+                <div class="lang-dropdown-menu">
+                    <a href="#" data-lang="en">English</a>
+                    <a href="#" data-lang="de">Deutsch</a>
+                    <a href="#" data-lang="fr">Fran&ccedil;ais</a>
+                    <a href="#" data-lang="es">Espa&ntilde;ol</a>
+                    <a href="#" data-lang="it">Italiano</a>
+                    <a href="#" data-lang="sr">Srpski</a>
+                </div>
             </div>
-            <a href="https://apps.apple.com" class="nav-cta">Download</a>
+            <a href="https://apps.apple.com" class="nav-cta" data-i18n="nav_download">Download</a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-content">
             <div class="hero-badge">
-                🍎 <span>Built for macOS</span>
+                &#127822; <span data-i18n="hero_badge">Built for macOS</span>
             </div>
-            <h1>Professional Invoicing. Made Simple.</h1>
-            <p>Create beautiful invoices in just a few clicks. Invoize is the most elegant way to manage invoicing on your Mac.</p>
+            <h1 data-i18n="hero_title">Professional Invoicing. Made Simple.</h1>
+            <p data-i18n="hero_desc">Create beautiful invoices in just a few clicks. Invoize is the most elegant way to manage invoicing on your Mac.</p>
             <div class="hero-buttons">
                 <a href="https://apps.apple.com" class="btn btn-primary">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                     </svg>
-                    Download on App Store
+                    <span data-i18n="hero_btn_download">Download on App Store</span>
                 </a>
-                <a href="#features" class="btn btn-secondary">Learn More</a>
+                <a href="#features" class="btn btn-secondary" data-i18n="hero_btn_learn">Learn More</a>
             </div>
             <div class="hero-image">
                 <div class="hero-image-placeholder">
-                    📊 Invoize Screenshot
+                    &#128202; <span data-i18n="hero_screenshot">Invoize Screenshot</span>
                 </div>
             </div>
         </div>
@@ -595,103 +655,103 @@
 
     <section class="features" id="features">
         <div class="section-header">
-            <h2>Everything You Need</h2>
-            <p>Powerful features designed to simplify your business</p>
+            <h2 data-i18n="features_title">Everything You Need</h2>
+            <p data-i18n="features_desc">Powerful features designed to simplify your business</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">📄</div>
-                <h3>Professional Templates</h3>
-                <p>Choose from various elegant templates or create your own design that reflects your brand.</p>
+                <div class="feature-icon">&#128196;</div>
+                <h3 data-i18n="feature_templates_title">Professional Templates</h3>
+                <p data-i18n="feature_templates_desc">Choose from various elegant templates or create your own design that reflects your brand.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">☁️</div>
-                <h3>iCloud Sync</h3>
-                <p>Your data is securely stored and automatically synced across all your Apple devices.</p>
+                <div class="feature-icon">&#9729;&#65039;</div>
+                <h3 data-i18n="feature_icloud_title">iCloud Sync</h3>
+                <p data-i18n="feature_icloud_desc">Your data is securely stored and automatically synced across all your Apple devices.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Quick Creation</h3>
-                <p>Create an invoice in seconds. Intuitive interface designed for maximum productivity.</p>
+                <div class="feature-icon">&#9889;</div>
+                <h3 data-i18n="feature_quick_title">Quick Creation</h3>
+                <p data-i18n="feature_quick_desc">Create an invoice in seconds. Intuitive interface designed for maximum productivity.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">💰</div>
-                <h3>Payment Tracking</h3>
-                <p>Track which invoices are paid and which are pending. Never miss a payment.</p>
+                <div class="feature-icon">&#128176;</div>
+                <h3 data-i18n="feature_payment_title">Payment Tracking</h3>
+                <p data-i18n="feature_payment_desc">Track which invoices are paid and which are pending. Never miss a payment.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>Reports & Analytics</h3>
-                <p>Get insights into your business with detailed reports and visual charts.</p>
+                <div class="feature-icon">&#128202;</div>
+                <h3 data-i18n="feature_reports_title">Reports & Analytics</h3>
+                <p data-i18n="feature_reports_desc">Get insights into your business with detailed reports and visual charts.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3>Privacy & Security</h3>
-                <p>Your data stays yours. No tracking, no ads, no compromises.</p>
+                <div class="feature-icon">&#128274;</div>
+                <h3 data-i18n="feature_privacy_title">Privacy & Security</h3>
+                <p data-i18n="feature_privacy_desc">Your data stays yours. No tracking, no ads, no compromises.</p>
             </div>
         </div>
     </section>
 
     <section class="benefits">
         <div class="section-header">
-            <h2>Why Invoize?</h2>
-            <p>The numbers speak for themselves</p>
+            <h2 data-i18n="benefits_title">Why Invoize?</h2>
+            <p data-i18n="benefits_desc">The numbers speak for themselves</p>
         </div>
         <div class="benefits-grid">
             <div class="benefit-item">
                 <div class="benefit-number">30s</div>
-                <h4>To Create an Invoice</h4>
-                <p>Average time to create a new invoice</p>
+                <h4 data-i18n="benefit_time_label">To Create an Invoice</h4>
+                <p data-i18n="benefit_time_desc">Average time to create a new invoice</p>
             </div>
             <div class="benefit-item">
                 <div class="benefit-number">100%</div>
-                <h4>Privacy</h4>
-                <p>Your data never leaves your devices</p>
+                <h4 data-i18n="benefit_privacy_label">Privacy</h4>
+                <p data-i18n="benefit_privacy_desc">Your data never leaves your devices</p>
             </div>
             <div class="benefit-item">
-                <div class="benefit-number">∞</div>
-                <h4>Unlimited</h4>
-                <p>No limits on invoices or clients</p>
+                <div class="benefit-number">&infin;</div>
+                <h4 data-i18n="benefit_unlimited_label">Unlimited</h4>
+                <p data-i18n="benefit_unlimited_desc">No limits on invoices or clients</p>
             </div>
         </div>
     </section>
 
     <section class="testimonials" id="testimonials">
         <div class="section-header">
-            <h2>What Users Say</h2>
-            <p>Join thousands of satisfied users</p>
+            <h2 data-i18n="testimonials_title">What Users Say</h2>
+            <p data-i18n="testimonials_desc">Join thousands of satisfied users</p>
         </div>
         <div class="testimonials-grid">
             <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"Finally an invoicing app that looks like it belongs on Mac! Simple, elegant, and powerful."</p>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text" data-i18n="testimonial1_text">"Finally an invoicing app that looks like it belongs on Mac! Simple, elegant, and powerful."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">MK</div>
                     <div class="testimonial-author-info">
-                        <h5>Mark K.</h5>
-                        <p>Freelancer</p>
+                        <h5 data-i18n="testimonial1_name">Mark K.</h5>
+                        <p data-i18n="testimonial1_role">Freelancer</p>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"I switched from a complicated enterprise app and never looked back. Invoize has everything I need."</p>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text" data-i18n="testimonial2_text">"I switched from a complicated enterprise app and never looked back. Invoize has everything I need."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">AP</div>
                     <div class="testimonial-author-info">
-                        <h5>Anna P.</h5>
-                        <p>Small Business Owner</p>
+                        <h5 data-i18n="testimonial2_name">Anna P.</h5>
+                        <p data-i18n="testimonial2_role">Small Business Owner</p>
                     </div>
                 </div>
             </div>
             <div class="testimonial-card">
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-text">"iCloud sync is fantastic. I can start an invoice on Mac and finish it on iPad. Perfect!"</p>
+                <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testimonial-text" data-i18n="testimonial3_text">"iCloud sync is fantastic. I can start an invoice on Mac and finish it on iPad. Perfect!"</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">JH</div>
                     <div class="testimonial-author-info">
-                        <h5>John H.</h5>
-                        <p>Consultant</p>
+                        <h5 data-i18n="testimonial3_name">John H.</h5>
+                        <p data-i18n="testimonial3_role">Consultant</p>
                     </div>
                 </div>
             </div>
@@ -700,13 +760,13 @@
 
     <section class="cta">
         <div class="cta-content">
-            <h2>Ready to Get Started?</h2>
-            <p>Download Invoize for free and transform the way you invoice.</p>
+            <h2 data-i18n="cta_title">Ready to Get Started?</h2>
+            <p data-i18n="cta_desc">Download Invoize for free and transform the way you invoice.</p>
             <a href="https://apps.apple.com" class="btn btn-secondary">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
                 </svg>
-                Download on App Store
+                <span data-i18n="cta_btn">Download on App Store</span>
             </a>
         </div>
     </section>
@@ -715,34 +775,37 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <h3>Invoize</h3>
-                <p>Professional invoicing for Mac. Simple, elegant, and secure.</p>
+                <p data-i18n="footer_brand_desc">Professional invoicing for Mac. Simple, elegant, and secure.</p>
             </div>
             <div class="footer-links">
-                <h4>Product</h4>
+                <h4 data-i18n="footer_product">Product</h4>
                 <ul>
-                    <li><a href="#features">Features</a></li>
-                    <li><a href="#testimonials">Reviews</a></li>
+                    <li><a href="#features" data-i18n="nav_features">Features</a></li>
+                    <li><a href="#testimonials" data-i18n="nav_reviews">Reviews</a></li>
                     <li><a href="https://apps.apple.com">App Store</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Support</h4>
+                <h4 data-i18n="footer_support">Support</h4>
                 <ul>
-                    <li><a href="support.html">Help Center</a></li>
-                    <li><a href="mailto:pekmario@gmail.com">Contact</a></li>
+                    <li><a href="support.html" data-i18n="footer_help_center">Help Center</a></li>
+                    <li><a href="mailto:pekmario@gmail.com" data-i18n="footer_contact">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-links">
-                <h4>Legal</h4>
+                <h4 data-i18n="footer_legal">Legal</h4>
                 <ul>
-                    <li><a href="privacy.html">Privacy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
+                    <li><a href="privacy.html" data-i18n="footer_privacy">Privacy</a></li>
+                    <li><a href="terms.html" data-i18n="footer_terms">Terms of Service</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Invoize. All rights reserved. Made with ❤️ for macOS.</p>
+            <p data-i18n="footer_copyright">&copy; 2025 Invoize. All rights reserved. Made with &#10084;&#65039; for macOS.</p>
         </div>
     </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/i18n.js"></script>
 </body>
 </html>
